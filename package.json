@@ -1,0 +1,19 @@
+{
+  "name": "app-todo",
+  "version": "1.0.0",
+  "description": "app todo de practica",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently 'sass --watch style.scss:style.css' 'live-server'",
+    "dev": "live-server",
+    "sass": "sass --watch style.scss:style.css"
+  },
+  "author": "Lucas Cifuentes",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^7.0.0",
+    "live-server": "^1.1.0",
+    "sass": "^1.49.0"
+  }
+}

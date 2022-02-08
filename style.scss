@@ -1,0 +1,42 @@
+body {
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #8ec5fc;
+  background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
+}
+
+.card {
+  margin-top: 20px;
+  width: 600px;
+  height: 300px;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 5px;
+  &__container {
+    &__item {
+      color: rgb(44, 41, 41);
+    }
+  }
+}
+
+.input {
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  &__text {
+    border: none;
+    &:focus {
+      outline: none;
+    }
+  }
+  &__button {
+    background-color: #8ec5fc;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 8px;
+    color: #fff;
+  }
+}
