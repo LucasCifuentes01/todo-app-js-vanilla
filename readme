@@ -1,0 +1,17 @@
+App Todo list:
+
+- HTML Semántico
+- BEM CSS (http://getbem.com/introduction/)
+- SASS (con BEM)
+- Javascript Vainilla
+
+Funcionalidades:
+
+- Aregar tareas
+- Borrar tareas
+- Marcar tareas como completadas (~~linea tachado~~)
+- Mostrar mensajes cuando:
+  - No hay tareas
+  - Todas se han completado
+
+naahuel

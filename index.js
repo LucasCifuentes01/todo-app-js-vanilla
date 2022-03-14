@@ -1,26 +1,80 @@
-const button = document.querySelector(".input__button");
+const form = document.querySelector(".input");
 const input = document.querySelector(".input__text");
-const card = document.querySelector(".card__container");
+const list = document.querySelector(".list");
 
-button.addEventListener("click", handleClick);
+window.onload = () => {
+  const items = getItems();
+  if (!items) return;
+  if (items && items.length > 0) items.map((el) => addItemToList(el.text));
+};
 
-const todoList = [];
+form.addEventListener("submit", addItem);
 
-function handleClick() {
+function getItems() {
+  const previusValue = window.localStorage.getItem("items");
+  return JSON.parse(previusValue);
+}
+
+function saveItem(item) {
+  if (getItems()) {
+    const data = getItems();
+    data.push(item);
+    window.localStorage.setItem("items", JSON.stringify(data));
+  } else {
+    window.localStorage.setItem("items", JSON.stringify([item]));
+  }
+}
+
+function addItem(e) {
+  e.preventDefault();
   addItemToList(input.value);
+  const value = {
+    text: input.value,
+    id: "",
+  };
+  saveItem(value);
+  input.value = "";
+}
+
+function removeItem(el, button) {
+  button.removeEventListener("click", () => {});
+  el.remove();
+}
+
+function createCheckBox(li) {
+  const checkBox = document.createElement("input");
+  checkBox.setAttribute("type", "checkbox");
+  checkBox.classList.add("list__checkbox");
+  checkBox.addEventListener("change", () => changeCheckBox(checkBox, li));
+  return checkBox;
 }
 
 function createItem(text) {
   const li = document.createElement("li");
-  li.className = "card__container__item";
-  li.innerText = text;
+  const textNode = document.createTextNode(text);
+  li.className = "list__item";
+  li.appendChild(createCheckBox(li));
+  li.appendChild(textNode);
+  li.appendChild(createButton("X", li));
   return li;
 }
 
+function createButton(text, el) {
+  const button = document.createElement("button");
+  button.addEventListener("click", removeItem.bind("asd", el, button));
+  button.className = "list__button";
+  button.innerHTML = text;
+  return button;
+}
+
+function changeCheckBox(checkBox, li) {
+  if (checkBox.checked) {
+    li.classList.add("list__item--state-completed");
+  } else {
+    li.classList.remove("list__item--state-completed");
+  }
+}
+
 function addItemToList(item) {
-  card.innerHTML = "";
-  todoList.push(item);
-  todoList.forEach((el) => {
-    card.innerHTML += createItem(el);
-  });
+  list.appendChild(createItem(item));
 }
